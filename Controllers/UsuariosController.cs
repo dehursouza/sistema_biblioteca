@@ -15,7 +15,7 @@ namespace Biblioteca.Controllers
         }
 
         public IActionResult editarUsuario(int id){   //ok
-            UsuariosController u = (new UsuarioService().Listar(id));
+            Usuario u = new UsuarioService().Listar(id);   // verificar
             return View(u);
         }
         
@@ -64,10 +64,10 @@ namespace Biblioteca.Controllers
         }
 
         
-        public IActionResult ExcluirUsuario(string decisao int id)
+        public IActionResult ExcluirUsuario(string decisao, int id)
         {
             if(decisao=="EXCLUIR"){
-                ViewData["Mensagem"] = "Exclusão de Usuário " + new UsuarioService().Listar(id).nome + " realizada com sucesso";
+                ViewData["Mensagem"] = "Exclusão de Usuário " + new UsuarioService().Listar(id).Nome + " realizada com sucesso";
                 new UsuarioService().excluirUsuario(id);
                 return View("ListaDeUsusarios", new UsuarioService().Listar());
                 
